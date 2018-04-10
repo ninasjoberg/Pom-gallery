@@ -6,3 +6,7 @@ body {
   height: 1024px;
   overflow-y: hidden;
 }
+
+* {
+  box-sizing: border-box;
+}

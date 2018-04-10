@@ -1,0 +1,17 @@
+.vertical, .horizontal {
+  position: absolute;
+  border: 10px solid white;
+  z-index: 100;
+}
+
+.vertical {
+  top: 100px; 
+}
+
+.horizontal {
+  top: 100px;
+}
+
+.frameImg {
+  width: 100%;
+}

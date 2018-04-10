@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@sanity/client": "^0.128.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts-cssmodules": "^1.1.10"
