@@ -1,7 +1,7 @@
 
 .floor {
   position: absolute;
-  bottom: -100px;
+  /* bottom: -100px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,7 +9,7 @@
 
 .backgroundColor {
   background-color: grey;
-  width: 3000px;
+  /* width: 3000px; */
   height: 500px;
   transform: perspective( 600px ) rotateX( 65deg );
 }

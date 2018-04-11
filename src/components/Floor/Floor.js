@@ -11,7 +11,7 @@ const Floor = ({ totalWidth, leftWall, rightWall }) => {
         <div className={styles.socle} style={{ width: socleWidth }}></div>
         <div className={styles.socleRight}></div>
       </div>
-      <div className={styles.backgroundColor} style={{ width: totalWidth + 3000, marginLeft: '-1000px' }}>
+      <div className={styles.backgroundColor} style={{ width: totalWidth }}>
         <div className={styles.backgroundImage} style={{ background: `url(${floorTexture})` }}></div>
       </div>
     </div>

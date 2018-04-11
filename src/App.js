@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import Wall from './components/Wall/Wall';
-import Floor from './components/Floor/Floor';
-import Lamp from './components/Lamp/Lamp';
+//import Wall from './components/Wall/Wall';
+//import Floor from './components/Floor/Floor';
+//import Lamp from './components/Lamp/Lamp';
 import Art from './components/Art/Art';
 import wallTexture from './assets/egg-shell50.png';
+import floorTexture from './assets/wood.jpg';
 import styles from './App.module.css';
 import client from './cmsApi';
 
@@ -15,9 +16,42 @@ const values = {
   inBetweenWidth: 200,
   leftWall: 417,
   rightWall: 417,
+  wallHeight: 880,  // ipad height 1024px
+  floorHeight: 200,  // ipad height 1024px
 };
 
 let totalWidth = 1000;
+
+const Canvas = (props) => {
+  return (
+    <div style={{ width: `${props.width}px`, height: `${props.height}px`, position: 'relative', overflowY: 'hidden' }}>{props.children}</div>
+  );
+};
+
+const SideWall = (props) => {
+  const c = props.side === 'left' ? 'sidewall sidewall-left' : 'sidewall sidewall-right';
+  return (
+    <div className={c} style={{ background: `url(${wallTexture})`, width: props.width, height: props.height }}>
+      <div className="sidewall-inner sidewall-shadow sidewall-opacity">{props.side}</div>
+    </div>
+  );
+};
+
+const ArtWall = (props) => {
+  return (
+    <div style={{ background: `url(${wallTexture})`, width: props.width, height: props.height }}>
+      <div className="artwall-inner">{props.side}</div>
+    </div>
+  );
+};
+
+const Floor = (props) => {
+  return (
+    <div className="floor" style={{ background: `url(${floorTexture})`, width: props.width, height: props.height }}>
+      <div className="floor-inner">{props.side}</div>
+    </div>
+  );
+};
 
 class App extends Component {
 
@@ -67,11 +101,15 @@ class App extends Component {
 
   render() {
     return (
-      <div className={styles.wallpaper} style={{ background: `url(${wallTexture})`, width: totalWidth }}>
-        {this.state.art && this.renderArt()}
-        <Wall />
-        {/* <Lamp /> */}
-        <Floor totalWidth={totalWidth} leftWall={values.leftWall} rightWall={values.rightWall} />
+      // <div className={styles.wallpaper} style={{ background: `url(${wallTexture})`, width: totalWidth }}>
+      <div>        
+        <Canvas width={totalWidth} height="1024">
+          {this.state.art && this.renderArt()}
+          <SideWall side="left" width={values.leftWall} height={values.wallHeight} />
+          <ArtWall width={totalWidth} height={values.wallHeight} />
+          <SideWall side="right" width={values.rightWall} height={values.wallHeight} />
+          <Floor width={totalWidth} height={values.floorHeight} />
+        </Canvas>
       </div>
     );
   }

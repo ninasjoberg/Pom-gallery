@@ -6,12 +6,19 @@
   z-index: 95;
 }
 
-.wallOpacity {
-  display: flex;
+/* .wallOpacity {
+  display: flex; 
   background-color: #fcfcf4;
   opacity: 0.4;
   width: 100%;
   height: 100vh;
+} */
+
+
+/* Opacity */
+.wallShadow, .wallShadowLeft, .wallShadowRight {
+  background-color: #fcfcf4;
+  opacity: 0.4;
 }
 
 .wallShadow {
@@ -25,9 +32,11 @@
 .wallShadowLeft {
   /* box-shadow: inset -30px -100px 60px 10px rgb(230, 230, 230); */
   width: 417px;
-  height: 100vh;
+  height: 120%;
   background-color: rgb(236, 236, 236);
   filter: brightness(0.95); 
+  transform: perspective(400px) rotateY(8deg);
+  z-index: 100;
 }
 
 .wallShadowRight {
