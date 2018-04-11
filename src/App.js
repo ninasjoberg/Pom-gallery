@@ -2,10 +2,22 @@ import React, { Component } from 'react';
 import Wall from './components/Wall/Wall';
 import Floor from './components/Floor/Floor';
 import Lamp from './components/Lamp/Lamp';
-import Frame from './components/Frame/Frame';
+import Art from './components/Art/Art';
 import wallTexture from './assets/egg-shell50.png';
 import styles from './App.module.css';
 import client from './cmsApi';
+
+const values = {
+  leftOffset: 600,
+  rightOffset: 400,
+  verticalWidth: 350,  // standing art
+  horizontalWidth: 500,
+  inBetweenWidth: 200,
+  leftWall: 417,
+  rightWall: 417,
+};
+
+let totalWidth = 1000;
 
 class App extends Component {
 
@@ -26,8 +38,14 @@ class App extends Component {
       { type: 'art' } // Params (optional)
     )
     .then((res) => {
-      // console.log('artists: ', res);
+
+      totalWidth = res.art.reduce((prev, curr) => {
+        const artWidth = curr.image.metadata.dimensions.aspectRatio < 1 ? values.verticalWidth : values.horizontalWidth;
+        return prev + artWidth + values.inBetweenWidth;
+      }, values.leftOffset); 
+      totalWidth += values.rightOffset;
       this.setState({ art: res.art });
+
     })
     .catch((err) => {
       console.error('Oh no, error occured: ', err);
@@ -35,29 +53,25 @@ class App extends Component {
     );
   }
 
-  renderFrames() {
-    let leftOffset = 600;
-    const verticalWidth = 350;
-    const horizontalWidth = 500;
-    const inBetweenWidth = 200;
+  renderArt() {
+    let offset = values.leftOffset;
 
-    const allFrames = this.state.art.map((a) => {
-      const artWidth = a.image.metadata.dimensions.aspectRatio < 1 ? verticalWidth : horizontalWidth;
-      const leftOff = leftOffset;
-      leftOffset += (artWidth + inBetweenWidth);
-      return <Frame url={a.image.url} dimensions={a.image.metadata.dimensions} artWidth={artWidth} leftOffset={leftOff} />;
+    const allArts = this.state.art.map((a) => {
+      const artWidth = a.image.metadata.dimensions.aspectRatio < 1 ? values.verticalWidth : values.horizontalWidth;
+      const leftOff = offset;
+      offset += (artWidth + values.inBetweenWidth);
+      return <Art url={a.image.url} dimensions={a.image.metadata.dimensions} artWidth={artWidth} leftOffset={leftOff} artist={a.artist} />;
     });
-
-    return allFrames;
+    return allArts;
   }
 
   render() {
     return (
-      <div className={styles.wallpaper} style={{ background: `url(${wallTexture})` }}>
-        {this.state.art && this.renderFrames()}
+      <div className={styles.wallpaper} style={{ background: `url(${wallTexture})`, width: totalWidth }}>
+        {this.state.art && this.renderArt()}
         <Wall />
-        <Lamp />
-        <Floor />
+        {/* <Lamp /> */}
+        <Floor totalWidth={totalWidth} leftWall={values.leftWall} rightWall={values.rightWall} />
       </div>
     );
   }

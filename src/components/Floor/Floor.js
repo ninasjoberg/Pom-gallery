@@ -1,18 +1,18 @@
 import React from 'react';
 import styles from './Floor.module.css';
-//import wallTexture from '../../assets/asfalt-dark.png';
-import wallTexture from '../../assets/482.jpg';
+import floorTexture from '../../assets/wood.jpg';
 
-const Floor = () => {
+const Floor = ({ totalWidth, leftWall, rightWall }) => {
+  const socleWidth = totalWidth - (leftWall + rightWall);
   return (
     <div className={styles.floor}>
       <div className={styles.socleContainer}>
-        <div className={styles.socleLeft}></div>
-        <div className={styles.socle}></div>
+        <div className={styles.socleLeft} style={{ width: leftWall - 8 }}></div>
+        <div className={styles.socle} style={{ width: socleWidth }}></div>
         <div className={styles.socleRight}></div>
       </div>
-      <div className={styles.backgroundColor}>
-        <div className={styles.backgroundImage} style={{ background: `url(${wallTexture})` }}></div>
+      <div className={styles.backgroundColor} style={{ width: totalWidth + 3000, marginLeft: '-1000px' }}>
+        <div className={styles.backgroundImage} style={{ background: `url(${floorTexture})` }}></div>
       </div>
     </div>
   );

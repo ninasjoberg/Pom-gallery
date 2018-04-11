@@ -1,0 +1,10 @@
+.plaque {
+  position: absolute; 
+  bottom: -60px;
+  right: 10px;
+  width: 80px;
+  height: 40px;
+  background: white;
+  font-size: 6px;
+  padding: 8px;
+}

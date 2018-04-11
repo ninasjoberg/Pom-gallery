@@ -13,11 +13,12 @@
   top: 100px;
 }
 
-.frameImg {
+.artImg {
   width: 100%;
   max-width: 100%;
   display: block;
   position: relative;
+  border-radius: 2px;
 }
 
 .vertical::after, .horizontal::after { 
