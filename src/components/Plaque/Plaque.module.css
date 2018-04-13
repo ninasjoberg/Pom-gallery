@@ -1,10 +1,36 @@
 .plaque {
-  position: absolute; 
-  bottom: -60px;
+  position: absolute;
+  bottom: -66px;
   right: 10px;
-  width: 80px;
-  height: 40px;
   background: white;
-  font-size: 6px;
-  padding: 8px;
+  padding: 6px 6px 4px 6px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  box-shadow: 2px 5px 8px 4px #c5c5c5;
+}
+
+.plaqueHeading {
+  margin: 0 0 5px 0;
+  font-size: 10px;
+}
+
+.plaqueText {
+  margin: 0 0 2px 0;
+  font-size: 10px;
+  color: gray;
+}
+
+.plaqueMoreInfo {
+  text-decoration: underline;
+  font-size: 12px;
+
+}
+
+.plagueZoomIcon {
+  position: absolute;
+  width: 40px;
+  opacity: 0.6;
+  bottom: -66px;
+  right: 10px;
 }

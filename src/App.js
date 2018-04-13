@@ -7,6 +7,8 @@ import wallTexture from './assets/egg-shell50.png';
 import floorTexture from './assets/wood.jpg';
 import styles from './App.module.css';
 import client from './cmsApi';
+import BigPlaque from './components/Plaque/BigPlaque';
+
 
 const values = {
   leftOffset: 600,
@@ -59,16 +61,23 @@ const SideWall = (props) => {
 
 class App extends Component {
 
-  state = {
-    
+  constructor(props) {
+    super(props);
+    this.state = {
+      showBigPlaque: null, // will be set to index number of artworkInfo that will be shown
+    };
+    this.handlePlaqueClick = this.handlePlaqueClick.bind(this);
   }
 
   componentDidMount() {
-  
     const query = `*[_type == 'art']{
       body,
-      "image": mainImage.asset->{url, metadata}, 
-      "artist": artist->name
+      "image": mainImage.asset->{url, metadata},
+      "artist": artist->name,
+      "description": artist->about[0].children[].text,
+      title,
+      price,
+      "artistImage": artist->image.asset->{url},
     }`;
 
     client.fetch(
@@ -77,29 +86,40 @@ class App extends Component {
       { type: 'art' } // Params (optional)
     )
     .then((res) => {
-
       totalWidth = res.art.reduce((prev, curr) => {
         const artWidth = curr.image.metadata.dimensions.aspectRatio < 1 ? values.verticalWidth : values.horizontalWidth;
         return prev + artWidth + values.inBetweenWidth;
       }, values.leftOffset);
       totalWidth += values.rightOffset;
-
       this.setState({ art: res.art });
     })
     .catch((err) => {
       console.error('Oh no, error occured: ', err);
+    });
+
+    document.body.addEventListener('scroll', () => {
+      if (this.state.showBigPlaque !== null) {
+        this.setState({ showBigPlaque: null });
+      }
+    });
+  }
+
+  handlePlaqueClick(event, artIndex) {
+    if (this.state.showBigPlaque === artIndex) {
+      this.setState({ showBigPlaque: null });
+    } else {
+      this.setState({ showBigPlaque: artIndex });
     }
-    );
   }
 
   renderArt() {
     let offset = values.leftOffset;
 
-    const allArts = this.state.art.map((a) => {
+    const allArts = this.state.art.map((a, index) => {
       const artWidth = a.image.metadata.dimensions.aspectRatio < 1 ? values.verticalWidth : values.horizontalWidth;
       const leftOff = offset;
       offset += (artWidth + values.inBetweenWidth);
-      return <Art url={a.image.url} dimensions={a.image.metadata.dimensions} artWidth={artWidth} leftOffset={leftOff} artist={a.artist} />;
+      return <Art url={a.image.url} dimensions={a.image.metadata.dimensions} artWidth={artWidth} leftOffset={leftOff} artist={a.artist} artName={a.title} price={a.price} handlePlaqueClick={this.handlePlaqueClick} index={index} />;
     });
     return allArts;
   }
@@ -109,6 +129,7 @@ class App extends Component {
       <div>
         <Canvas totalWidth={totalWidth}>
           <ArtWall totalWidth={totalWidth} wallHeight={values.wallHeight} />
+          {this.state.showBigPlaque != null && <BigPlaque artwork={this.state.art[this.state.showBigPlaque]} handlePlaqueClick={this.handlePlaqueClick} />}
           <SideWall side="left" width={values.leftWall} height={values.wallHeight} />
           <SideWall side="right" width={values.rightWall} height={values.wallHeight} />
           <Floor totalWidth={totalWidth} leftWall={values.leftWall} rightWall={values.rightWall} />

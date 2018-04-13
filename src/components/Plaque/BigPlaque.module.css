@@ -1,0 +1,49 @@
+.BigPlaque {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 500;
+    width: 550px;
+    background-color: #fff;
+    padding: 20px 40px 40px 40px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 0 100vmax rgba(210,210,210, .7);
+    font-size: 18px;
+}
+
+.closeButton {
+    border: none;
+    outline: none;
+    font-size: 20px;
+    cursor: pointer;
+    align-self: flex-end;
+    background-color: white;
+}
+
+.BigPlaqueText {
+    margin: 10px 0;
+}
+
+.BigPlaquePrice {
+    margin: 5px 0;
+    font-style:italic;
+}
+
+
+.BigPlaquePomLogo {
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+.div {
+    margin-top: 20px;
+}
+
+.BigPlaqueImg {
+    float: left;
+    min-width: 100px;
+    height: 100px;
+    margin: 12px 20px 0 0;
+}
