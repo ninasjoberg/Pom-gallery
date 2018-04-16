@@ -1,16 +1,10 @@
-
 .floor {
-  position: absolute;
-  /* bottom: -100px; */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   overflow: hidden;
+  z-index: 90;
 }
 
 .backgroundColor {
   background-color: grey;
-  /* width: 3000px; */
   height: 500px;
   transform: perspective( 600px ) rotateX( 65deg );
 }
@@ -20,42 +14,6 @@
   width: 140%; 
   height: 100%;
   overflow-x: hidden;
-  z-index: 90;
-  margin-left: -650px; /* magic */
-}
-
-.socleContainer {
-  /* position: absolute;
-  bottom: 0; */
-  display: flex;
-  margin-bottom: -175px;
-}
-
-.socle {
-  background-color: #fffcf8; 
-  height: 25px;
-  /* width: 2179px; */
-  /* margin-bottom: -175px; */
-}
-
-.socleLeft {
-  background-color: #fffcf8;
-  height: 25px;
-  width: 409px; 
-  align-self: flex-start;
-  transform: skewY(-10.5deg);
-  margin-bottom: -36px;
-  margin-top: 34px;
-  z-index: 100;
-  
-}
-
-.socleRight {
-  background-color: #fffcf8;
-  height: 25px;
-  width: 409px; 
-  align-self: flex-end;
-  transform: skewY(10.5deg);
-  margin-bottom: -36px;
-  z-index: 100;
+  margin-left: -700px; /* magic */
+  margin-top: -200px; /* magic */
 }

@@ -1,0 +1,30 @@
+.socleContainer {
+  position: absolute;
+  top: 820px;   /* wall height minus socle height */
+  display: flex;
+  align-items: flex-start;
+  height: 120px;
+}
+
+.socleMiddle {
+  background-color: #fffcf8; 
+  height: 25px;
+  width: calc(100% - 17px); /* to fill out space between side socles */
+}
+
+.socleLeft, .socleRight {
+  width: 441px; 
+  background-color: #fffcf8;
+  height: 25px;
+  z-index: 100;
+  filter: brightness(0.97);
+  margin-top: 40px;  /* magic, to adjust for skew */ 
+}
+
+.socleLeft {
+  transform: skewY(-11.5deg);
+}
+
+.socleRight { 
+  transform: skewY(11.5deg);
+}

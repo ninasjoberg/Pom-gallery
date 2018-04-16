@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-// import Wall from './components/Wall/Wall';
 import Floor from './components/Floor/Floor';
 // import Lamp from './components/Lamp/Lamp';
 import Art from './components/Art/Art';
-import wallTexture from './assets/egg-shell50.png';
-import floorTexture from './assets/wood.jpg';
+import Artwall from './components/Wall/Artwall';
+import Sidewall from './components/Wall/Sidewall';
 import styles from './App.module.css';
 import client from './cmsApi';
 import BigPlaque from './components/Plaque/BigPlaque';
@@ -32,32 +31,6 @@ const Canvas = (props) => {
   );
 };
 
-
-const ArtWall = (props) => {
-  const { totalWidth, wallHeight } = props;
-
-  const styles = {
-    background: `url(${wallTexture})`,
-    width: totalWidth,
-    // height: wallHeight,
-  };
-
-  return (
-    <div className="artwall" style={styles}>
-    </div>
-  );
-};
-
-const SideWall = (props) => {
-  const c = props.side === 'left' ? 'sidewall sidewall-left' : 'sidewall sidewall-right';
-  const sidewallHeight = props.height + 70;
-  return (
-    <div className={c} style={{ width: props.width, height: sidewallHeight }}>
-      <div className="sidewall-inner" style={{ background: `url(${wallTexture})`, backgroundColor: 'rgb(236, 236, 236)' }} />
-      {/* <div className="sidewall-inner sidewall-shadow"></div> */}
-    </div>
-  );
-};
 
 class App extends Component {
 
@@ -128,11 +101,11 @@ class App extends Component {
     return (
       <div>
         <Canvas totalWidth={totalWidth}>
-          <ArtWall totalWidth={totalWidth} wallHeight={values.wallHeight} />
+          <Artwall totalWidth={totalWidth} />
           {this.state.showBigPlaque != null && <BigPlaque artwork={this.state.art[this.state.showBigPlaque]} handlePlaqueClick={this.handlePlaqueClick} />}
-          <SideWall side="left" width={values.leftWall} height={values.wallHeight} />
-          <SideWall side="right" width={values.rightWall} height={values.wallHeight} />
-          <Floor totalWidth={totalWidth} leftWall={values.leftWall} rightWall={values.rightWall} />
+          <Sidewall side="left" />
+          <Sidewall side="right" />
+          <Floor totalWidth={totalWidth} />
           {this.state.art && this.renderArt()}
         </Canvas>
       </div>

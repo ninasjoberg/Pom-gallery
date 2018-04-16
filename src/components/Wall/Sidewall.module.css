@@ -1,0 +1,21 @@
+
+.sidewallLeft, .sidewallRight {
+  position: absolute;
+  top: 0;
+  z-index: 200;
+  margin-top: -37px; /* magic */
+  height: 920px;  /* wall height plus extra for rotate */
+  width: 409px;
+  filter: brightness(0.98); 
+  border-bottom: 25px solid #fffcf8;
+}
+
+.sidewallLeft {
+  left: 0;
+  transform: skewY(-10.5deg);
+}
+
+.sidewallRight {
+  right: 0;
+  transform: skewY(10.5deg);
+}
