@@ -8,6 +8,7 @@ const Artwall = (props) => {
   const bg = {
     background: `url(${wallTexture})`,
     width: totalWidth,
+    backgroundColor: 'rgb(243, 243, 243)',
   };
 
   return (

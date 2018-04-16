@@ -6,7 +6,7 @@
   margin-top: -37px; /* magic */
   height: 920px;  /* wall height plus extra for rotate */
   width: 409px;
-  filter: brightness(0.98); 
+  filter: brightness(0.98);
   border-bottom: 25px solid #fffcf8;
 }
 
@@ -19,3 +19,4 @@
   right: 0;
   transform: skewY(10.5deg);
 }
+
