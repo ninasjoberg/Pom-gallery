@@ -1,12 +1,14 @@
 .floor {
   overflow: hidden;
-  z-index: 90;
+  position: absolute; /* to use z-index */
+  z-index: -1;
 }
 
 .backgroundColor {
   background-color: grey;
   height: 500px;
   transform: perspective( 600px ) rotateX( 65deg );
+  -webkit-transform: perspective( 600px ) rotateX( 65deg );
 }
 
 .backgroundImage {
@@ -16,4 +18,5 @@
   overflow-x: hidden;
   margin-left: -700px; /* magic */
   margin-top: -200px; /* magic */
+
 }

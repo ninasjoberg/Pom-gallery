@@ -1,4 +1,6 @@
 .artwall {
   height: 845px;
   border-bottom: 25px solid #fffcf8;
+  position: relative;   /* to use z-index */
+  z-index: -1;
 }

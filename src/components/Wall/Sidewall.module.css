@@ -18,4 +18,5 @@
 .sidewallRight {
   right: 0;
   transform: skewY(10.5deg);
+  -webkit-transform: skewY(10.5deg);
 }
