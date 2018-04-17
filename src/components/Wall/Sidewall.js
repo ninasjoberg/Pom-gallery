@@ -1,7 +1,6 @@
 import React from 'react';
 import wallTexture from '../../assets/egg-shell50.png';
 import styles from './Sidewall.module.css';
-import PomGalleryImg from '../../assets/pomGallery-img.jpg';
 
 const Sidewall = (props) => (
   <div>

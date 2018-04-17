@@ -1,0 +1,10 @@
+.pomImg {
+    position: absolute;
+    z-index: 500;
+    z-index: 500;
+    width: 250px;
+    top: 256px;
+    left: 80px;
+    transform: perspective( 530px ) rotateY( 15deg );
+    box-shadow: 0px 7px 8px 4px #afa8a8;
+}

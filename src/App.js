@@ -4,6 +4,8 @@ import Floor from './components/Floor/Floor';
 import Art from './components/Art/Art';
 import Artwall from './components/Wall/Artwall';
 import Sidewall from './components/Wall/Sidewall';
+import PomGallery from './components/Wall/PomGallery';
+import TheEnd from './components/Wall/theEnd';
 import styles from './App.module.css';
 import client from './cmsApi';
 import BigPlaque from './components/Plaque/BigPlaque';
@@ -104,7 +106,9 @@ class App extends Component {
           <Artwall totalWidth={totalWidth} />
           {this.state.showBigPlaque != null && <BigPlaque artwork={this.state.art[this.state.showBigPlaque]} handlePlaqueClick={this.handlePlaqueClick} />}
           <Sidewall side="left" />
+          <PomGallery />
           <Sidewall side="right" />
+          <TheEnd/>
           <Floor totalWidth={totalWidth} />
           {this.state.art && this.renderArt()}
         </Canvas>

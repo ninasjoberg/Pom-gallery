@@ -1,0 +1,15 @@
+.theEnd {
+    position: absolute;
+    z-index: 1000;
+    right: 84px;
+    top: 310px;
+    text-align: center;
+    transform: perspective( 300px ) rotateY( -17deg );
+    color: #717070;
+}
+
+
+.welcome {
+    font-size: 42px;
+    margin-bottom: 0px;
+}
