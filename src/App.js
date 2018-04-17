@@ -108,7 +108,7 @@ class App extends Component {
           <Sidewall side="left" />
           <PomGallery />
           <Sidewall side="right" />
-          <TheEnd/>
+          <TheEnd />
           <Floor totalWidth={totalWidth} />
           {this.state.art && this.renderArt()}
         </Canvas>
