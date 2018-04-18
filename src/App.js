@@ -4,12 +4,11 @@ import Art from './components/Art/Art';
 import Artwall from './components/Wall/Artwall';
 import Sidewall from './components/Wall/Sidewall';
 import PomGallery from './components/Wall/PomGallery';
-import TheEnd from './components/Wall/theEnd';
 import client from './cmsApi';
 import BigPlaque from './components/Plaque/BigPlaque';
 import GalleryPlaque from './components/Plaque/GalleryPlaque';
 import styles from './App.module.css';
-
+// import res from './data/staticData.json';
 
 const values = {
   leftOffset: 600,
@@ -24,14 +23,11 @@ const values = {
 
 let totalWidth = 4000;
 
-const Canvas = (props) => {
-  const { totalWidth } = props;
-  return (
-    <div className="canvas" style={{ width: totalWidth }}>
-      {props.children}
-    </div>
-  );
-};
+const Canvas = (props) => (
+  <div className="canvas" style={{ width: props.totalWidth }}>
+    {props.children}
+  </div>
+);
 
 
 class App extends Component {
@@ -62,6 +58,7 @@ class App extends Component {
       location
     }`;
 
+    // data from sanity
     client.fetch(
       `{ 'art': ${artQuery}`
       + `, 'gallery': ${galleryQuery}`
@@ -79,6 +76,15 @@ class App extends Component {
     .catch((err) => {
       console.error('Oh no, error occured: ', err);
     });
+
+    // // static data
+    // totalWidth = res.result.art.reduce((prev, curr) => {
+    //   const artWidth = curr.image.metadata.dimensions.aspectRatio < 1 ? values.verticalWidth : values.horizontalWidth;
+    //   return prev + artWidth + values.inBetweenWidth;
+    // }, values.leftOffset);
+    // totalWidth += values.rightOffset;
+    // this.setState({ art: res.result.art, gallery: res.result.gallery });
+
 
     document.body.addEventListener('scroll', () => {
       if (this.state.showBigPlaque !== null) {
@@ -143,7 +149,6 @@ class App extends Component {
             <GalleryPlaque gallery={this.state.gallery} handlePomGalleryClick={this.handlePomGalleryClick}  />
           }
           <Sidewall side="right" />
-          <TheEnd />
           <Floor totalWidth={totalWidth} />
           {this.state.art && this.renderArt()}
         </Canvas>

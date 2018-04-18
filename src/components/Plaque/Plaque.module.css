@@ -18,7 +18,6 @@
 .plaqueText {
   margin: 0 0 2px 0;
   font-size: 10px;
-  color: gray;
 }
 
 .plaqueMoreInfo {
@@ -33,4 +32,10 @@
   opacity: 0.6;
   bottom: -66px;
   right: 10px;
+}
+
+.readMoreText {
+  margin: 0 0 2px 0;
+  font-size: 10px;
+  color: gray;
 }
