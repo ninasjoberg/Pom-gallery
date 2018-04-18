@@ -1,8 +1,10 @@
 import React from 'react';
 import BlockContent from '@sanity/block-content-to-react';
-import styles from './BigPlaque.module.css';
+import styles from './GalleryPlaque.module.css';
 import PomGalleryLogo from '../../assets/pomgallery.svg';
 import closeIcon from '../../assets/cancel.svg';
+import GoogleMaps from './GoogleMaps';
+
 
 const serializers = {
   types: {
@@ -15,13 +17,16 @@ const serializers = {
 };
 
 
-const BigPlaque = ({ gallery, handlePomGalleryClick }) => (
-  <div className={styles.BigPlaque} onClick={handlePomGalleryClick}>
+const GalleryPlaque = ({ gallery, handlePomGalleryClick }) => (
+  <div className={styles.galleryPlaque} onClick={handlePomGalleryClick}>
     <img className={styles.closeButton} src={closeIcon} alt="Close" />
-    <img className={styles.BigPlaquePomLogo} src={PomGalleryLogo} alt="Pom logo"></img>
+    <img className={styles.galleryPlaquePomLogo} src={PomGalleryLogo} alt="Pom logo"></img>
     {gallery && <BlockContent blocks={gallery[0].description} serializers={serializers} />}
+    <div className={styles.googleMapsContainer}>
+      <GoogleMaps position={gallery[0].location} />
+    </div>
   </div>
 );
 
 
-export default BigPlaque;
+export default GalleryPlaque;

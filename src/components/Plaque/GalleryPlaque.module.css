@@ -1,0 +1,38 @@
+.galleryPlaque {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 500;
+    width: 550px;
+    background-color: #fff;
+    padding: 20px 40px 40px 40px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 0 100vmax rgba(210,210,210, .7);
+    font-size: 18px;
+}
+
+.closeButton {
+    width: 25px;
+    cursor: pointer;
+    align-self: flex-end;
+    margin-right: -20px;
+}
+
+.galleryPlaqueText {
+    margin: 10px 0;
+}
+
+.galleryPlaquePomLogo {
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+.googleMapsContainer {
+    margin: 0 auto;
+    width: 450px;
+    height: 250px;
+}
+
+

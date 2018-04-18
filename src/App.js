@@ -103,7 +103,6 @@ class App extends Component {
     }
   }
 
-
   renderArt() {
     let offset = values.leftOffset;
 

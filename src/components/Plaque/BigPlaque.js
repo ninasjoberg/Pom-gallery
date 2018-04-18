@@ -3,9 +3,7 @@ import styles from './BigPlaque.module.css';
 import PomGalleryLogo from '../../assets/pomgallery.svg';
 import closeIcon from '../../assets/cancel.svg';
 
-const BigPlaque = ({ artwork, handlePlaqueClick }) => {
-  console.log(artwork); //TODO: change body in sanity!
-  return (
+const BigPlaque = ({ artwork, handlePlaqueClick }) => (
   <div className={styles.BigPlaque} onClick={(e) => handlePlaqueClick(e, null)}>
     <img className={styles.closeButton} src={closeIcon} alt="Close" />
     <img className={styles.BigPlaquePomLogo} src={PomGalleryLogo} alt="Pom logo"></img>
@@ -18,6 +16,6 @@ const BigPlaque = ({ artwork, handlePlaqueClick }) => {
     </div>
   </div>
 );
-}
+
 
 export default BigPlaque;
