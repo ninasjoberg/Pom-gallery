@@ -45,7 +45,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const query = `*[_type == 'art']{
+    const artQuery = `*[_type == 'art'] | order(_createdAt desc) {
       body,
       "image": mainImage.asset->{url, metadata},
       "artist": artist->name,
@@ -55,8 +55,14 @@ class App extends Component {
       "artistImage": artist->image.asset->{url},
     }`;
 
+    const galleryQuery = `*[_type == 'gallery']{
+      description,
+      location
+    }`;
+
     client.fetch(
-      `{ 'art': ${query}`
+      `{ 'art': ${artQuery}`
+      + `, 'gallery': ${galleryQuery}`
       + '}', // Query
       { type: 'art' } // Params (optional)
     )
@@ -66,7 +72,7 @@ class App extends Component {
         return prev + artWidth + values.inBetweenWidth;
       }, values.leftOffset);
       totalWidth += values.rightOffset;
-      this.setState({ art: res.art });
+      this.setState({ art: res.art, gallery: res.gallery });
     })
     .catch((err) => {
       console.error('Oh no, error occured: ', err);
