@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import Floor from './components/Floor/Floor';
-// import Lamp from './components/Lamp/Lamp';
 import Art from './components/Art/Art';
 import Artwall from './components/Wall/Artwall';
 import Sidewall from './components/Wall/Sidewall';
 import PomGallery from './components/Wall/PomGallery';
 import TheEnd from './components/Wall/theEnd';
-import styles from './App.module.css';
 import client from './cmsApi';
 import BigPlaque from './components/Plaque/BigPlaque';
+import GalleryPlaque from './components/Plaque/GalleryPlaque';
+import styles from './App.module.css';
 
 
 const values = {
@@ -40,8 +40,10 @@ class App extends Component {
     super(props);
     this.state = {
       showBigPlaque: null, // will be set to index number of artworkInfo that will be shown
+      showPomGalleryInfo: false,
     };
     this.handlePlaqueClick = this.handlePlaqueClick.bind(this);
+    this.handlePomGalleryClick = this.handlePomGalleryClick.bind(this);
   }
 
   componentDidMount() {
@@ -93,6 +95,15 @@ class App extends Component {
     }
   }
 
+  handlePomGalleryClick() {
+    if (this.state.showPomGalleryInfo === true) {
+      this.setState({ showPomGalleryInfo: false });
+    } else {
+      this.setState({ showPomGalleryInfo: true });
+    }
+  }
+
+
   renderArt() {
     let offset = values.leftOffset;
 
@@ -100,7 +111,19 @@ class App extends Component {
       const artWidth = a.image.metadata.dimensions.aspectRatio < 1 ? values.verticalWidth : values.horizontalWidth;
       const leftOff = offset;
       offset += (artWidth + values.inBetweenWidth);
-      return <Art url={a.image.url} dimensions={a.image.metadata.dimensions} artWidth={artWidth} leftOffset={leftOff} artist={a.artist} artName={a.title} price={a.price} handlePlaqueClick={this.handlePlaqueClick} index={index} />;
+      return (
+        <Art
+          url={a.image.url}
+          dimensions={a.image.metadata.dimensions}
+          artWidth={artWidth}
+          leftOffset={leftOff}
+          artist={a.artist}
+          artName={a.title}
+          price={a.price}
+          handlePlaqueClick={this.handlePlaqueClick}
+          index={index}
+        />
+      );
     });
     return allArts;
   }
@@ -110,9 +133,16 @@ class App extends Component {
       <div>
         <Canvas totalWidth={totalWidth}>
           <Artwall totalWidth={totalWidth} />
-          {this.state.showBigPlaque != null && <BigPlaque artwork={this.state.art[this.state.showBigPlaque]} handlePlaqueClick={this.handlePlaqueClick} />}
+          {this.state.showBigPlaque != null &&
+            <BigPlaque artwork={this.state.art[this.state.showBigPlaque]} handlePlaqueClick={this.handlePlaqueClick} />
+          }
           <Sidewall side="left" />
-          <PomGallery />
+          {this.state.gallery &&
+            <PomGallery galleryInfo={this.state.gallery} handlePomGalleryClick={this.handlePomGalleryClick} />
+          }
+          {this.state.showPomGalleryInfo &&
+            <GalleryPlaque gallery={this.state.gallery} handlePomGalleryClick={this.handlePomGalleryClick}  />
+          }
           <Sidewall side="right" />
           <TheEnd />
           <Floor totalWidth={totalWidth} />
