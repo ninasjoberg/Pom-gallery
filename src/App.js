@@ -87,8 +87,9 @@ class App extends Component {
 
 
     document.body.addEventListener('scroll', () => {
-      if (this.state.showBigPlaque !== null) {
+      if (this.state.showBigPlaque !== null || this.state.showPomGalleryInfo) {
         this.setState({ showBigPlaque: null });
+        this.setState({ showPomGalleryInfo: false });
       }
     });
   }
